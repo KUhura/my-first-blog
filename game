@@ -1,0 +1,129 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <thread>
+#include <chrono>
+#include <cmath>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+ 
+using namespace std;
+using std::cout;
+using std::flush;
+using std::string;
+using std::this_thread::sleep_for;
+using std::chrono::milliseconds;
+
+
+ 
+// Forward declare the slow_print function
+void slow_print(const string&, unsigned int);
+
+// Main function
+
+ void show_health_bar(std::ostream& os, int asr,
+                       std::string text, char sign = '*')
+{
+    static const auto health_length = 100;
+    // not including the percentage figure and spaces
+
+    if (text.length() >= health_length) {
+        os << text << '\n';
+        text.clear();
+    } else {
+        text += " ";
+    }
+
+    const auto health_level = 100.0 / (health_length - text.length());
+
+    std::cout << text;
+
+    for (double pct = 0; pct <= 100; pct += health_level) {
+        text += sign;
+        os << "\r [" << std::setw(3) << static_cast<int>(pct) << "%] "
+           << text << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(asr));
+    }
+    os << "\n\n";
+}
+
+
+int main()
+{
+    string message = "Your next mission is going to be based in Quadrant 4 of the Depok solar system \nYou have to land on the Planet Asguar with the BM41 Spaceship with Leuitenant Troy \nThis planet is has commited treason against the untied federanion and it is your \njob to defeat the main leaders on the united resistance in order to stop treason \nfrom spreading in the nation\n";
+    show_health_bar(std::clog, 100, "LODING GAME PlEASE WAIT:", ':');
+    cout << "Press ENTER twice....";
+    cin.ignore();
+    cin.get();
+
+
+  
+  
+cout <<   "               ,--.    ,--.              "<<endl;
+cout <<   "              ((O ))--((O ))             "<<endl;
+cout <<   "            ,'_`--'____`--'_`.           "<<endl;
+cout <<   "           _:  ____________  :_          "<<endl;
+cout <<   "          | | ||::::::::::|| | |     **************************************   "<<endl;
+cout <<   "          | | ||::::::::::|| | |     * LEUITENANT: RIKER                  *   "<<endl;
+cout <<   "          | | ||::::::::::|| | |     * POSITION:   Head of USS Enterprise *   "<<endl;
+cout <<   "          |_| ||__________|| |_|     **************************************   "<<endl;
+cout <<   "            |________________|           "<<endl;
+cout <<   "         __..-'            `-..__        "<<endl;
+cout <<   "      .-| : .----------------. : |-.     "<<endl;
+cout<< "+-----------------------------------------------------------------------------------------------+ \n";
+      
+     
+    slow_print(message, 80);
+    cout << "Press ENTER twice....";
+    cin.ignore();
+    cin.get(); 
+    system("CLS");
+  
+  
+    cout <<     "................................" <<endl;
+    cout <<    " |                              |" <<endl;
+    cout <<    " |  Start Score: 100            |" <<endl; 
+    cout <<    " |  Your Goemul # 04 - Zeplin   |" <<endl;
+    cout <<    " |                              |" <<endl;
+    cout <<    " ................................" <<endl;
+ 
+ 
+  cout <<       "             .~~-.      _.    " <<endl;
+  cout <<       "   .''..    (_~)  ) _.-'. ;   " <<endl;
+  cout <<       "   '.'..'..-(_~ _-'*. .'.'    " <<endl;
+  cout <<       "     ''.'.. _ ~~  _  ';'      " <<endl;
+  cout <<       "      .''. (_)   (_)  '.      " <<endl;
+  cout <<       "      ;      ...     '.       " <<endl;
+  cout <<       "  .''.'.   .''`-'''.    '.''. " <<endl;
+  cout <<       " '.  '   ;         ;    ;  ; " <<endl;
+  cout <<       "   '.   ;           ;   ' ;  " <<endl;
+  cout <<       "     '.  ;           ;    ;   " <<endl;
+  cout <<       "     '.  ;         ;   .'    " <<endl;
+  cout <<       "      .'...:..___..:..':.     " <<endl;
+  cout <<       "  .''     ..'    '...   ~)   " <<endl;
+  cout <<       "  (.....'''           ''''    " <<endl;
+     return 0;
+    
+}
+
+// Implement the slow_print function
+/**
+ * Function to print each character in a string with a delay (a "typewriter" effect)
+ * @param message         The string to print
+ * @param millis_per_char Milliseconds to take to print each character
+ */
+void slow_print(const string& message, unsigned int millis_per_char)
+{
+    // Range loops are "for each" constructs; here: for each character in the string
+    for (const char c: message)
+    {
+        // flush is used to make sure the buffer is emptied to the terminal immediately
+        cout << c << flush;
+
+        // Ask the thread to sleep for at least n millis.
+        sleep_for(milliseconds(millis_per_char));
+    }
+}
+ 
