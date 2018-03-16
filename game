@@ -8,7 +8,9 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
- 
+#include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
 using std::cout;
 using std::flush;
@@ -54,6 +56,7 @@ int main()
 {
     string message = "Your next mission is going to be based in Quadrant 4 of the Depok solar system \nYou have to land on the Planet Asguar with the BM41 Spaceship with Leuitenant Troy \nThis planet is has commited treason against the untied federanion and it is your \njob to defeat the main leaders on the united resistance in order to stop treason \nfrom spreading in the nation\n";
     show_health_bar(std::clog, 100, "LODING GAME PlEASE WAIT:", ':');
+    
     cout << "Press ENTER twice....";
     cin.ignore();
     cin.get();
@@ -76,13 +79,33 @@ cout<< "+-----------------------------------------------------------------------
       
      
     slow_print(message, 80);
+    
     cout << "Press ENTER twice....";
     cin.ignore();
     cin.get(); 
-    system("CLS");
+    
   
-  
-    cout <<     "................................" <<endl;
+    int option;
+    int ohealth, health, a, set, strike, protect, swift, ostrike, oprotect, oswift, harm, oharm;
+    strike = 10;
+    protect= 15;
+    swift = 5;
+    ostrike = 10;
+    oprotect = 15;
+    oswift = 5;
+ 
+    srand(unsigned(time(0)));
+    set = rand()%2+1;
+    ohealth = rand()%50+60;
+    health = rand()%20+80;
+    if (set == 1){
+     
+    return 0;
+    
+    
+    
+}
+  cout <<     "................................" <<endl;
     cout <<    " |                              |" <<endl;
     cout <<    " |  Start Score: 100            |" <<endl; 
     cout <<    " |  Your Goemul # 04 - Zeplin   |" <<endl;
@@ -104,9 +127,156 @@ cout<< "+-----------------------------------------------------------------------
   cout <<       "      .'...:..___..:..':.     " <<endl;
   cout <<       "  .''     ..'    '...   ~)   " <<endl;
   cout <<       "  (.....'''           ''''    " <<endl;
-     return 0;
-    
+  while(health > 0 || ohealth > 0){
+        cout << "+...........................................................................................+\n";
+        cout << "ATTACK NOW\n [1] Energy ball \n [2] Fire Attack \n [3] Dizzy punch\n";
+        cout << "+...........................................................................................+\n";
+        do{cin >> option;} while(option > 3 || option < 1);
+        switch (option){
+        case 1:
+            strike = rand()%20+10;
+            protect= rand()%10+10;
+            swift = rand()%5;
+            break;
+        case 2:
+            strike= rand()%5+10;
+            protect = rand()%10+10;
+            swift = rand()%15;
+            break;
+        case 3:
+            strike= rand()%10+10;
+            protect= rand()%20+10;
+            swift = rand()%5;
+            break;
+        }
+        option = rand()%3;
+ 
+        switch (option){
+        case 1:
+            ostrike = rand()%20+10;
+            oprotect = rand()%10+10;
+            oswift = rand()%5;
+            break;
+        case 2:
+            ostrike = rand()%5+10;
+            oprotect = rand()%10+10;
+            oswift = rand()%15;
+            break;
+        case 3:
+            ostrike = rand()%10+10;
+            oprotect = rand()%20+10;
+            oswift = rand()%5;
+            break;
+        }
+        oharm = (strike - oswift) - (oprotect/protect);
+        if (oharm <0){
+        oharm = 0;
+        }
+        ohealth = ohealth - oharm;
+        cout << "You did " << oharm << " amount of destruction upon the damage to the opposition!\n";
+        cin.get();
+ 
+        if(ohealth < 1) {
+            cout << "You have destroyed your opponent the! Plantent Asguar is now safer but there are more enemies ahead\n";
+            cin.get();
+            return 0;
+        }
+ 
+        cout << "Your opponent has " << ohealth << " HP left now.\n";
+        harm = (ostrike - swift) - ( protect / ostrike);
+        if (harm < 0)
+        {
+            harm = 0;
+        }
+        health = health - harm;
+ 
+        cout << "Your opponent hurt your Goemul so you've lost " << harm << " points and currently have, " << health << " HP points remaining\n";
+ 
+        if (health < 1) {
+            cout << "Your Goemul died! Your opponent still has " << ohealth << " HP remaining";
+            cin.get();
+            return 0;
+        }
+        else {
+           
+ 
+        while(health > 0 || ohealth > 0){
+        cout << "+...........................................................................................+\n";
+        cout << "ATTACK NOW\n [1] Energy ball \n [2] Fire Attack \n [3] Dizzy punch\n";
+        cout << "+...........................................................................................+\n";
+            do{cin >> option;} while(option > 3 || option < 1);
+            switch (option){
+            case 1:
+                strike = rand()%20+10;
+                protect = rand()%10+10;
+                swift = rand()%5;
+                break;
+            case 2:
+                strike= rand()%5+10;
+                protect = rand()%10+10;
+                swift = rand()%15;
+                break;
+            case 3:
+                strike = rand()%10+10;
+                protect = rand()%20+10;
+                swift = rand()%5;
+                break;
+            }
+            option = rand()%3;
+ 
+            switch (option){
+            case 1:
+                ostrike = rand()%20+10;
+                oprotect = rand()%10+10;
+                oswift = rand()%5;
+                break;
+            case 2:
+                ostrike = rand()%5+10;
+                oprotect = rand()%10+10;
+                oswift = rand()%15;
+                break;
+            case 3:
+                ostrike = rand()%10+10;
+                oprotect = rand()%20+10;
+                swift = rand()%5;
+                break;
+            }
+             oharm = (strike - oswift) - (oprotect/strike);
+            if (oharm <0){
+            oharm = 0;
+            }
+            ohealth = ohealth - oharm;
+            cout << "You did " << oharm << "amount of destruction upon the damage to the opposition!\n";
+            cin.get();
+ 
+            if(ohealth < 1) {
+                cout << "You have destroyed your opponent the! Plantent Asguar is now safer but there are more enemies ahead\n";
+                cin.get();
+                return 0;
+            }
+ 
+            cout << "The monter now has " << ohealth << " HP left.\n";
+             harm= (ostrike - swift) - (protect / ostrike);
+            if (harm < 0)
+            {
+                harm = 0;
+            }
+            health = health - harm;
+ 
+             cout << "Your opponent hurt your Goemul so you've lost " << harm << " points and currently have, " << health << " HP points remaining\n";
+            if (health < 1) {
+                cout << "Your Goemul died! Your opponent still has " << ohealth << " HP remaining";
+                cin.get();
+                return 0;
+            }
+        }
+    }
 }
+}
+
+
+
+
 
 // Implement the slow_print function
 /**
